@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View</title>
+    <style>
+        a {
+            text-decoration: none;
+            font-weight: bold;
+            font-size: large;
+            color: blue;
+        }
+
+        a:hover {
+            color: green;
+        }
+
+        a:visited {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<h2>View Product</h2>
+
+<p>
+    <a href="/shop">Shop</a>
+</p>
+
+<p>
+    <a href="/shopping-cart">Your cart</a>
+</p>
+
+<table th:object="${product}">
+    <tr>
+        <td><label for="name">Name: </label></td>
+        <td><input type="text" id="name" th:field="*{name}" disabled/></td>
+    </tr>
+    <tr>
+        <td><label for="price">Price: </label></td>
+        <td><input type="text" id="price" th:field="*{price}" disabled/></td>
+    </tr>
+    <tr>
+        <td><label for="description">Description: </label></td>
+        <td><textarea name="description" id="description" cols="40" rows="10" th:field="*{description}" disabled></textarea></td>
+    </tr>
+</table>
+</body>
+</html>

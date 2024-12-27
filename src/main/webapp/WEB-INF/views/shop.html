@@ -3,11 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        a {
+            font-size: large;
+            color: blue;
+        }
+        a:hover {
+            color: green;
+        }
+        a:visited {
+            color: blue;
+        }
+        table a {
+            color: black;
+        }
+        table a:visited {
+            color: black;
+        }
+    </style>
 </head>
 <body>
 <p>
     <a href="/shopping-cart">Your cart</a>
 </p>
+
+<p th:if="${message}">
+    <span th:text="${message}"></span>
+</p>
+
 <table border="1">
     <tr>
         <th>Name</th>
@@ -16,7 +39,7 @@
     </tr>
     <th:block th:each="product:${products}">
         <tr>
-            <td th:text="${product.name}"></td>
+            <td><a th:href="@{/view/__${product.id}__}" th:text="${product.name}"></a></td>
             <td th:text="${product.price}"></td>
             <td><a th:href="@{/add/__${product.id}__(action='list')}">Add To Cart</a></td>
         </tr>
