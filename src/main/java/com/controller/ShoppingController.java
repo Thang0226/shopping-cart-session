@@ -20,4 +20,20 @@ public class ShoppingController {
         modelAndView.addObject("cart",cart);
         return modelAndView;
     }
+
+    @GetMapping("/checkout")
+    public ModelAndView showCheckout (@SessionAttribute("cart") Cart cart){
+        ModelAndView modelAndView = new ModelAndView("checkout");
+        modelAndView.addObject("cart",cart);
+        return modelAndView;
+    }
+
+    @GetMapping("/order")
+    public String order(@SessionAttribute("cart") Cart cart){
+        /* Do some payment thing
+        ...
+        */
+        cart.clearCart();
+        return "redirect:/shop";
+    }
 }

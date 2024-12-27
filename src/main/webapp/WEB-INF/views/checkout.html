@@ -22,7 +22,7 @@
 </head>
 <body>
 <p>
-    <a href="/shop">Shop</a>
+    <a href="/shopping-cart">Back to Cart</a>
 </p>
 
 <h1>Your Cart</h1>
@@ -45,15 +45,15 @@
         </td>
         <td th:text="${product.getKey().price}"></td>
     </tr>
-    <tr>
-        <td>Total</td>
+    <tr style="background: lightyellow">
+        <td>Total Payment</td>
         <td></td>
         <td th:text="${cart.countTotalPayment()}"></td>
     </tr>
 </table>
 <br><br>
 <p>
-    <a th:href="@{/checkout}">Checkout Cart</a>
+    <a th:href="@{/order}">Order</a>
 </p>
 
 </body>
