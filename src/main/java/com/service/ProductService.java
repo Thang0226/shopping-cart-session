@@ -14,11 +14,11 @@ public class ProductService implements IProductService {
 
     @Override
     public Iterable<Product> findAll() {
-        return null;
+        return productRepository.findAll();
     }
 
     @Override
     public Optional<Product> findById(Long id) {
-        return Optional.empty();
+        return productRepository.findById(id);
     }
 }

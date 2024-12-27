@@ -3,6 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        a {
+            text-decoration: none;
+            font-weight: bold;
+            font-size: large;
+            color: blue;
+        }
+        a:hover {
+            color: green;
+        }
+        a:visited {
+            color: blue;
+        }
+    </style>
 </head>
 <body>
 <p>
@@ -21,10 +35,11 @@
         <tr th:each="product: ${cart.products}">
             <td th:text="${product.getKey().name}"></td>
             <td>
-                <a id="decrease_button" th:text="${'-'}"></a>
+                <a id="decrease_button" th:href="@{/subtract/__${product.getKey().id}__(action='show')}"
+                   th:text="${' - '}"></a>
                 <span th:text="${product.getValue()}"></span>
                 <a id="increase_button" th:href="@{/add/__${product.getKey().id}__(action='show')}"
-                   th:text="${'+'}"></a>
+                   th:text="${' + '}"></a>
             </td>
             <td th:text="${product.getKey().price}"></td>
         </tr>

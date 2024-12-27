@@ -31,16 +31,35 @@ public class ProductController {
     @GetMapping("/add/{id}")
     public String addToCart(@PathVariable Long id,
                             @ModelAttribute Cart cart,
-                            @RequestParam("action") String action) {
+                            @RequestParam("action") Optional<String> action) {
         Optional<Product> productOptional = productService.findById(id);
         if (!productOptional.isPresent()) {
             return "error_404";
         }
-        if (action.equals("show")) {
-            cart.addProduct(productOptional.get());
-            return "redirect:/shopping-cart";
+        if (action.isPresent()) {
+            if (action.get().equals("show")) {
+                cart.addProduct(productOptional.get());
+                return "redirect:/shopping-cart";
+            }
         }
         cart.addProduct(productOptional.get());
+        return "redirect:/shop";
+    }
+
+    @GetMapping("/subtract/{id}")
+    public String subtractFromCart(@PathVariable Long id,
+                            @ModelAttribute Cart cart,
+                            @RequestParam("action") Optional<String> action) {
+        Optional<Product> productOptional = productService.findById(id);
+        if (!productOptional.isPresent()) {
+            return "error_404";
+        }
+        cart.subtractProduct(productOptional.get());
+        if (action.isPresent()) {
+            if (action.get().equals("show")) {
+                return "redirect:/shopping-cart";
+            }
+        }
         return "redirect:/shop";
     }
 }

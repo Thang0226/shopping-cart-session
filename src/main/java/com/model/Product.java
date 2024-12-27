@@ -1,6 +1,7 @@
 package com.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "product")
@@ -51,5 +52,18 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(id, product.id); // Compare based on a unique identifier
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id); // Use the same unique identifier for hashCode
     }
 }
